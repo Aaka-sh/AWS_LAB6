@@ -1,12 +1,6 @@
 import React, { useState, useReducer } from "react";
 
-
 export default function PostsCard(props) {
-
-
-
-
-
   return (
     <div
       className="card col-lg-5"
@@ -20,7 +14,12 @@ export default function PostsCard(props) {
     >
       <div className="card-body">
         <div className="title-div" style={{ alignItems: "center" }}>
-        <h2 className="card-title" style={{textAlign:"center", fontSize:"28px"}}>{props.title}</h2>
+          <h2
+            className="card-title"
+            style={{ textAlign: "center", fontSize: "28px" }}
+          >
+            {props.title}
+          </h2>
         </div>
         <div
           style={{
@@ -34,10 +33,10 @@ export default function PostsCard(props) {
           }}
         >
           <p className="card-text">
-            <b style={{color:"#1e5cc8"}}> No. of Positive: </b> {props.no_of_positive}
+            <b style={{ color: "#1e5cc8" }}> No. of Positive: </b>{" "}
+            {props.no_of_positive}
             <br />
             <br />
-           
           </p>
         </div>
         <div
@@ -46,9 +45,7 @@ export default function PostsCard(props) {
             flexDirection: "row",
             alignItems: "center",
           }}
-        >
-       
-        </div>
+        ></div>
       </div>
     </div>
   );

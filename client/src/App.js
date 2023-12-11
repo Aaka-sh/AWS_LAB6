@@ -1,6 +1,5 @@
 import React from "react";
 
-import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 import Home from "./components/Home";
@@ -16,7 +15,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addcase" element={<AddCases />} />
-
         </Routes>
       </Router>
     </>

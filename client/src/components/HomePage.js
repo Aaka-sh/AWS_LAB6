@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 import PostsCard from "./PostsCard";
-import Input from "@mui/material/Input";
-import InputAdornment from "@mui/material/InputAdornment";
-import SearchIcon from "@mui/icons-material/Search";
-import Axios from 'axios';
+
+import Axios from "axios";
 export default function HomePage() {
-
- const [coviddets, setCovidDets]=useState([]);
-
+  const [coviddets, setCovidDets] = useState([]);
 
   const fetchdata = () => {
-    Axios.get("http://localhost:3001/getdets", {
-        
-    }).then((response) => {
+    Axios.get("http://localhost:3001/getdets", {}).then((response) => {
+      setCovidDets(response.data);
 
-    setCovidDets(response.data);
- 
-    //console.log(response);
-    console.log(response.data);
-})
-
-}
-
-
+      //console.log(response);
+      console.log(response.data);
+    });
+  };
 
   // const fetchdata = async () => {
   //   let { data: Blogs, error } = await supabase
@@ -46,24 +36,25 @@ export default function HomePage() {
         <div className="container">
           <div className="row">
             <h1>Covid-19 Dashboard!</h1>
-            <h2><b>View all details statewise!</b></h2>
+            <h2>
+              <b>View all details statewise!</b>
+            </h2>
           </div>
           <button
-                            className="btn"
-                            type="button"
-                            style={{
-                              backgroundColor: "#199ca9",
-                              color: "white",
-                              padding:"10px",
-                              paddingRight:'20px',
-                              paddingLeft:'20px'
-                            }}
-                           
-                          >
-                            <a href="#postsection" style={{color: "white"}}>View Statewise 
-                            Data</a>
-                            
-                          </button>
+            className="btn"
+            type="button"
+            style={{
+              backgroundColor: "#199ca9",
+              color: "white",
+              padding: "10px",
+              paddingRight: "20px",
+              paddingLeft: "20px",
+            }}
+          >
+            <a href="#postsection" style={{ color: "white" }}>
+              View Statewise Data
+            </a>
+          </button>
         </div>
       </section>
       <section
@@ -89,14 +80,13 @@ export default function HomePage() {
               }}
             >
               <h2>View Data</h2>
-
             </div>
 
             <div
               style={{
                 width: "100%",
                 display: "flex",
-                id:"datad",
+                id: "datad",
                 flexDirection: "row-reverse",
                 alignItems: "right",
               }}
@@ -107,7 +97,6 @@ export default function HomePage() {
             {coviddets.map((item, key) => {
               return (
                 <PostsCard
-                
                   title={item.State_Name}
                   no_of_positive={item.No_of_Positive}
                   key={key}
