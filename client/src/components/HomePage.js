@@ -35,7 +35,7 @@ export default function HomePage() {
       <section id="hero" className="d-flex align-items-center">
         <div className="container">
           <div className="row">
-            <h1>Covid-19 Dashboard!</h1>
+            <h1>University Dashboard!</h1>
             <h2>
               <b>View all details statewise!</b>
             </h2>
@@ -97,8 +97,8 @@ export default function HomePage() {
             {coviddets.map((item, key) => {
               return (
                 <PostsCard
-                  title={item.State_Name}
-                  no_of_positive={item.No_of_Positive}
+                  title={item.name}
+                  no_of_positive={item.gender}
                   key={key}
                 />
               );

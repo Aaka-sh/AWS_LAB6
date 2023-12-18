@@ -15,18 +15,25 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 const db = mysql.createConnection({
   user: "admin",
-  host: "covid-19-2247206-1.cd70djtkrx08.us-east-1.rds.amazonaws.com",
+  host: "projectdata-2247206.cd70djtkrx08.us-east-1.rds.amazonaws.com",
   password: "12345678",
-  database: "Covid19",
+  database: "student",
 });
 
 app.get("/getdets", (req, res) => {
   const regno = req.query.regno;
 
   db.execute(
-    "select * from covid_details order by No_of_Positive",
+    "select * from student",
 
     (err, result) => {
       //  console.log(err);
@@ -37,25 +44,17 @@ app.get("/getdets", (req, res) => {
 });
 
 app.post("/insertdets", (req, res) => {
-  const State_Name = req.body.State_Name;
-  const Date_of_Record = req.body.Date_of_Record;
-  const No_of_Samples = req.body.No_of_Samples;
-  const No_of_Deaths = req.body.No_of_Deaths;
-  const No_of_Positive = req.body.No_of_Positive;
-  const No_of_Negative = req.body.No_of_Negative;
-  const No_of_Discharge = req.body.No_of_Discharge;
+  const name = req.body.name;
+  const course = req.body.course;
+  const gender = req.body.gender;
+  const nationality = req.body.nationality;
+  const dob = req.body.dob;
+  //const No_of_Negative = req.body.No_of_Negative;
+  //const No_of_Discharge = req.body.No_of_Discharge;
   console.log("ho");
   db.execute(
-    "INSERT INTO covid_details (State_Name, Date_of_Record, No_of_Samples, No_of_Deaths, No_of_Positive, No_of_Negative, No_of_Discharge) VALUES (?,?,?,?,?,?,?)",
-    [
-      State_Name,
-      Date_of_Record,
-      No_of_Samples,
-      No_of_Deaths,
-      No_of_Positive,
-      No_of_Negative,
-      No_of_Discharge,
-    ],
+    "INSERT INTO student (name, course, gender, nationality, dob) VALUES (?,?,?,?,?)",
+    [name, course, gender, nationality, dob],
     (err, result) => {
       console.log(err);
       console.log(result);
